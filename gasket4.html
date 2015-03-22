@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>3D Sierpinski Gasket</title>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec3 vColor;
+varying vec4 color;
+
+uniform mat4 projectionMatrix;
+uniform mat4 modelViewMatrix;
+
+void
+main()
+{
+    gl_Position = projectionMatrix*modelViewMatrix*vPosition;
+    color = vec4(vColor, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+   
+varying vec4 color;
+
+void
+main()
+{
+    gl_FragColor = color;
+}
+</script>
+
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/initShaders.js"></script>
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="honolulu4.js"></script>
+<script type="text/javascript" src="gasket4.js"></script>
+<script src="js/three.min.js"></script>
+
+</head>   
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+
+
+<div>
+Subdivisions 1 <input id="subdivisions" type="range"
+ min="1" max="5" step="1" value="5" />
+ 5
+</div>
+
+<div>
+	<button id="rotateX">Rotate X</button>
+	<button id="rotateY">Rotate Y</button>
+	<button id="rotateZ">Rotate Z</button>
+</div>
+
+<div>
+	<button id="increase">Increase FOV</button>
+	<button id="decrease">Decrease FOV
+		
+		</button>
+</div>
+
+<div>
+	<button id="mouseMode">Translate Mode</button>
+</div>
+
+<div>
+	<h5>Instructions</h5>
+	A D looks left and right<br>
+	W S moves forward and back<br>
+	R F moves up and down<br>
+	Use the buttons above or your mouse to rotate the gasket<br>
+	Click the mode button to change how your mouse interacts with the gasket<br>
+</div>
+
+
+
+</body>
+
+
+
+</html>
